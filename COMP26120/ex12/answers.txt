@@ -1,0 +1,11 @@
+Daronhil Mauricette
+COMP26120 
+
+1. 
+The program cannot use enumeration for large numbers because it would take too
+time to find out every feasible combination of items to pack. Also I would guess
+anything over 999 would be too large to run and take too long, to the point
+where you might as well use another algorithm.
+
+2.
+

@@ -1,0 +1,39 @@
+A. Find the fixed point of an array
+
+FIRST ATTEMPT
+-----------------------------
+find_array_element (array A[])
+{
+  int element = 0
+ 
+  for each element in A[]
+    if  A[i]= A[element]
+      print A[i]
+    else 
+      print No
+      element + 1
+}
+-----------------------------
+
+
+SECOND ATTEMPT
+-----------------------------
+find_array_element (array A[])
+{ 
+  boolean is_number_in_array
+  int first_ele = A[0]
+  int last_ele = A[array.length-1]
+
+  while (first_ele <= last_ele and !is_number_in_array)
+    int mid = (first_ele + last_ele)/2
+    if A[mid] = i
+      print A[mid] 
+      is_number_in_array = True
+
+    else
+      if i < A[mid]
+        last_ele = mid-1
+      else
+        first_ele = mid+1 
+}
+----------------------------- 

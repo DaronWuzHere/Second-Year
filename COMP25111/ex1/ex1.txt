@@ -1,0 +1,95 @@
+Daronhil Mauricette
+Code ran - changes made to the main method
+
+//------------------------------------------------------------------------------
+
+main (int argc, char *argv[]) {	// The 'root' programme; execution start
+
+  int local_1, local_2;		// Variables local to 'main'
+  int *ptr_1, *ptr_2;		// More local variables - note '*'
+  				// These may be used later
+
+  printf("Memory investigation programme\n");
+
+  glob_1  = 0x12345678;		// Put a distinctive value in a variable
+  local_1 = 0xABCDEF;		// ... and again
+
+  printf("Variable glob_1  contains data %08X\n", glob_1);
+  printf("Variable local_1 contains data %08X\n", local_1);
+  printf("Size of integer: %d\n", (sizeof(int)));
+  printf("Size of integer: %d\n", (sizeof(long)));
+  printf("Size of integer: %d\n", (sizeof(char)));
+
+  printf("Variable glob_1 at address %016X contains data %08X\n", &glob_1, glob_1);
+
+  printf("Variable glob_2 at address %016X contains data %08X\n", &glob_2, glob_2);
+
+  printf("Variable glob_1 at address %016X contains data %08X\n", &glob_3, glob_3);
+
+  printf("main at address %016X contains data %08X\n", &main, main);
+
+  printf("method_1 at address %016X contains data %08X\n", &method_1, method_1);
+  method_1(local_1);		// Call something, with an argument
+
+  printf("Variable local_1 is at address %016X\n", &local_1);
+  printf("Variable ptr_1 is at address %016X\n", &ptr_1);
+  printf("Variable local_1 at address %016X contains data %08X\n", &local_1, local_1);
+
+  local_1 = 0xABCDEF;
+  ptr_1   = &local_1;
+
+  printf("Variable local_1 holds data %08X\n", local_1);
+  printf("Variable ptr_1 holds data %016X\n", ptr_1);
+
+  printf("That's all folks\n");
+
+  exit(0);
+}
+
+//==============================================================================
+Output of the program
+
+Memory investigation programme
+Variable glob_1  contains data 12345678
+Variable local_1 contains data 00ABCDEF
+
+Size of integer: 4
+Size of integer: 8
+Size of integer: 1
+
+Variable glob_1 at address 000000000060104C contains data 12345678
+Variable glob_2 at address 0000000000601048 contains data 00000000
+Variable glob_1 at address 0000000000601050 contains data 00000000
+
+main at address 00000000004005BD contains data 004005BD
+method_1 at address 0000000000400770 contains data 00400770
+
+Variable arg_1   contains data 00ABCDEF
+Variable meth_int_1 contains data DEADBEEF
+
+Variable local_1 is at address 00000000BA24375C
+Variable ptr_1 is at address 00000000BA243750
+
+Variable local_1 at address 00000000BA24375C contains data 00ABCDEF
+Variable local_1 holds data 00ABCDEF
+
+Variable ptr_1 holds data 00000000BA24375C
+That's all folks
+
+//==============================================================================
+Machines I ran on 
+Kilburn LF31 PC #19
+
+
+
+
+
+
+
+
+
+
+
+
+
+

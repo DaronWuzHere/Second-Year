@@ -1,0 +1,26 @@
+Lab Exercise 11
+COMP26120
+Daronhil Mauricette
+A clique is a subset of vertices in an undirected graph G =(V, E), where every
+two vertices in that clique is adjacent.
+ 
+This allows the subset of vertices to be a complete graph. The maximum clique in
+any undirected graph is the largest clique in the graph. 
+
+Since cliques are adjacent to two vertices, each vertex in the clique must have 
+a distinct colour.Therefore knowing the size of the maximal clique allows for
+smallest k such that a graph is k-colourable.
+
+The Maximal Clique Problem occurs when there is an undirected graph with 
+multiple cliques, when a new vertex is added, the number of total cliques that 
+must be searched doubles.
+
+This causes an exponentially growing problem, where the most effecient algorithm
+that solves this problem runs in O(1.188^n), but that is the best upper bound.
+
+The lower bound would not be a polynomial one, otherwise P=NP would be solved.
+
+This is related to a graph's colourability because there are instances where a
+node needs to be added to a graph, which could cause the size of the maximum 
+node to increase, which then gives us a reason to search for the maximum node
+again.

@@ -1,0 +1,10 @@
+mktextfm ecrm1200+20
+mktextfm ecrm1200-20
+mktextfm eccc1200+20
+mktextfm eccc1200-20
+mktextfm ecrm1440+20
+mktextfm ecrm1440-20
+mktextfm cmr12+20
+mktextfm cmr12-20
+mktextfm cmr10+20
+mktextfm cmr10-20

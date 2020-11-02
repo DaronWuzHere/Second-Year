@@ -1,0 +1,4 @@
+HELLO WORLD
+HELLO WORLD
+Read 12 characters in total.
+10 converted to uppercase,2 converted to lowercase.

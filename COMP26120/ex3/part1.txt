@@ -1,0 +1,12 @@
+ 0x00007ffff7aaf716 in __strcpy_sse2_unaligned () from /lib64/libc.so.6
+
+This was the error found. I assume it means that it the memory address used in 
+"strcpy" had no space.
+
+I added a "malloc" statement before the "strcpy" statement inorder to allow 
+space.
+
+The program now returns a null statement in the space of "work.second".
+
+I did have some problems using "break" and "watchpoint", this caused me to not 
+figure out the rest.

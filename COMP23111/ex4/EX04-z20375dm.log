@@ -1,0 +1,557 @@
+SQL> 
+SQL> START /opt/info/courses/COMP23111/drop-Eclectic-Ecommerce-tables.sql
+SQL> drop table lineItems;
+
+Table dropped.
+
+SQL> drop table inventoryItem;
+
+Table dropped.
+
+SQL> drop table itemType;
+
+Table dropped.
+
+SQL> drop table category;
+
+Table dropped.
+
+SQL> drop table orderCartInfo;
+
+Table dropped.
+
+SQL> drop table customerInfo;
+
+Table dropped.
+
+SQL> START /opt/info/courses/COMP23111/create-Eclectic-Ecommerce-tables.sql
+SQL> create table customerInfo (
+  2  	    loginName varchar(10) primary key,
+  3  	    password  varchar(15) not null,
+  4  	    firstName varchar(20) not null,
+  5  	    lastName  varchar(20) not null,
+  6  	    email     varchar(20) not null,
+  7  	    cStreet   varchar(20) not null,
+  8  	    cState    varchar(2) not null,
+  9  	    cZip      varchar(6) not null
+ 10  );
+
+Table created.
+
+SQL> 
+SQL> create table orderCartInfo (
+  2  	    orderCartId varchar(10) primary key,
+  3  	    oType	varchar(15) not null check (oType in ('S', 'O')),
+  4  	    oYear	int	    not null,
+  5  	    oMonth	int	    not null,
+  6  	    oDay	int	    not null,
+  7  	    customerID	varchar(10) not null
+  8  			references customerInfo(loginName) on delete cascade
+  9  );
+
+Table created.
+
+SQL> 
+SQL> create table category (
+  2  	    categoryId	varchar(10) primary key,
+  3  	    description varchar(50)
+  4  );
+
+Table created.
+
+SQL> 
+SQL> create table itemType (
+  2  	    itemNum   varchar(10) primary key,
+  3  	    name      varchar(20) not null,
+  4  	    picture   varchar(50),
+  5  	    price     float	  not null,
+  6  	    belongsTo varchar(10) not null
+  7  		      references category(categoryId) on delete cascade
+  8  );
+
+Table created.
+
+SQL> 
+SQL> create table inventoryItem (
+  2  	    itemNum    varchar(10) not null
+  3  		       references itemType(itemNum) on delete cascade,
+  4  	    code       varchar(20) not null,
+  5  	    qtyInstock float	   not null,
+  6  	    itemColor  varchar(15),
+  7  	    itemSize   float,
+  8  	    primary key (itemNum, code)
+  9  );
+
+Table created.
+
+SQL> 
+SQL> create table lineItems (
+  2  	    orderCartId varchar(10) not null
+  3  			references orderCartInfo(orderCartId) on delete cascade,
+  4  	    itemNum	varchar(10) not null
+  5  			references itemType(itemNum) on delete cascade,
+  6  	    code	varchar(20) not null,
+  7  	    qtyOrdered	float	    not null,
+  8  	    orderPrice	float	    not null,
+  9  	    primary key (orderCartId, itemNum, code)
+ 10  );
+
+Table created.
+
+SQL> 
+SQL> START /opt/info/courses/COMP23111/populate-Eclectic-Ecommerce-tables.sql
+SQL> 
+SQL> insert into customerInfo values ('choizeznyc', 'KJH*GS9', 'John', 'Booker', 'jb@choizez-nyc.com', '202 East 78th', 'NY', '10021');
+
+1 row created.
+
+SQL> insert into customerInfo values ('shkeandco', 'JHKG*!9S', 'Mary', 'Folio', 'mf@shkeandco.com', '993 Lexington Ave', 'NY', '10065');
+
+1 row created.
+
+SQL> insert into customerInfo values ('dramab', 'KG454*56Skl', 'Ophelia', 'Elsinore', 'oe@dramab.com', '502 West 40th', 'NY', '10018');
+
+1 row created.
+
+SQL> insert into customerInfo values ('astrab', '4!2!3kjn3e', 'Percy', 'Byron', 'pb@astrab.com', '92 31st', 'NY', '11106');
+
+1 row created.
+
+SQL> 
+SQL> insert into orderCartInfo values ('1', 'S', 2015, 12, 23, 'shkeandco');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('2', 'S', 2015, 08, 03, 'dramab');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('3', 'S', 2015, 12, 23, 'astrab');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('4', 'O', 2015, 08, 03, 'astrab');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('5', 'S', 2015, 09, 18, 'shkeandco');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('6', 'S', 2015, 06, 03, 'shkeandco');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('7', 'S', 2015, 12, 12, 'dramab');
+
+1 row created.
+
+SQL> insert into orderCartInfo values ('8', 'O', 2015, 08, 28, 'astrab');
+
+1 row created.
+
+SQL> 
+SQL> insert into category values ('F',	'fiction');
+
+1 row created.
+
+SQL> insert into category values ('H',	'history');
+
+1 row created.
+
+SQL> insert into category values ('P',	'poetry');
+
+1 row created.
+
+SQL> insert into category values ('C',	'crime');
+
+1 row created.
+
+SQL> insert into category values ('SF', 'sci-fi');
+
+1 row created.
+
+SQL> 
+SQL> insert into itemType values ('A0', 'The Anarchy of Mask', '***', 10.99, 'P');
+
+1 row created.
+
+SQL> insert into itemType values ('A1', 'The Butler Did', '---', 11.99, 'C');
+
+1 row created.
+
+SQL> insert into itemType values ('A2', 'The Abolished Man', '===', 15.99, 'SF');
+
+1 row created.
+
+SQL> insert into itemType values ('A3', 'Lyrical Bullets', '+-+-', 20.99, 'P');
+
+1 row created.
+
+SQL> insert into itemType values ('B1', 'The Postlude', '=\=\=', 34.99, 'P');
+
+1 row created.
+
+SQL> insert into itemType values ('C1', 'The August of Guns', '**--', 10.99, 'H');
+
+1 row created.
+
+SQL> insert into itemType values ('C2', 'The Expectant Mirror', '^-^', 12.99, 'H');
+
+1 row created.
+
+SQL> 
+SQL> insert into inventoryItem values ('A0', 'pbk', 30, 'black', 3.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('B1', 'hbk', 50, 'white', 4.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('A0', 'hbk', 25, 'green', 4.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('C2', 'hbk', 20, 'black', 3.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('C1', 'ebk', 70, 'black', 4.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('A3', 'pbk', 30, 'black', 2.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('A2', 'pbk', 50, 'green', 3.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('A0', 'ebk', 15, 'green', 4.0);
+
+1 row created.
+
+SQL> insert into inventoryItem values ('C2', 'pbk', 30, 'black', 3.0);
+
+1 row created.
+
+SQL> 
+SQL> insert into lineItems values ('1', 'A0', 'pbk', 1, 2.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('8', 'A3', 'pbk', 2, 3.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('3', 'A2', 'pbk', 5, 5.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('2', 'A2', 'pbk', 3, 3.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('1', 'C1', 'ebk', 2, 2.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('3', 'C2', 'hbk', 4, 2.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('3', 'A3', 'pbk', 8, 3.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('4', 'B1', 'hbk', 3, 4.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('6', 'B1', 'hbk', 2, 6.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('5', 'A2', 'pbk', 1, 2.99);
+
+1 row created.
+
+SQL> insert into lineItems values ('7', 'A1', 'pbk', 1, 1.99);
+
+1 row created.
+
+SQL> 
+SQL> 
+SQL> --(1)(a)
+SQL> CREATE VIEW CustomersWithCarts AS
+  2  SELECT DISTINCT firstName, lastName
+  3  FROM customerInfo, orderCartInfo, lineItems
+  4  WHERE customerInfo.loginName = orderCartInfo.customerID AND orderPrice > 0;
+CREATE VIEW CustomersWithCarts AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> SELECT * FROM CustomersWithCarts;
+
+FIRSTNAME            LASTNAME                                                   
+-------------------- --------------------                                       
+Ophelia              Elsinore                                                   
+Mary                 Folio                                                      
+Percy                Byron                                                      
+
+SQL> 
+SQL> --(1)(b)
+SQL> 
+SQL> CREATE VIEW ItemView AS
+  2  SELECT DISTINCT itemType.itemNum, category.categoryID, inventoryItem.qtyInstock
+  3  FROM inventoryItem, category, itemType
+  4  WHERE itemType.belongsTo = category.categoryID
+  5  AND inventoryItem.itemNum = itemType.itemNum;
+CREATE VIEW ItemView AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> SELECT * FROM ItemView;
+
+ITEMNUM    CATEGORYID QTYINSTOCK                                                
+---------- ---------- ----------                                                
+A3         P                  30                                                
+C2         H                  30                                                
+C2         H                  20                                                
+A2         SF                 50                                                
+B1         P                  50                                                
+C1         H                  70                                                
+A0         P                  15                                                
+A0         P                  30                                                
+A0         P                  25                                                
+
+9 rows selected.
+
+SQL> 
+SQL> --(1)(c)
+SQL> 
+SQL> CREATE VIEW CustomerOrderPrices AS
+  2  SELECT DISTINCT customerInfo.loginName, customerInfo.firstName,
+  3  customerInfo.lastName, orderCartInfo.orderCartID, lineItems.orderPrice
+  4  FROM customerInfo, orderCartInfo, lineItems
+  5  WHERE customerInfo.loginName = orderCartInfo.customerID
+  6  AND lineItems.orderCartID = orderCartInfo.orderCartID;
+CREATE VIEW CustomerOrderPrices AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> SELECT * FROM CustomerOrderPrices;
+
+LOGINNAME  FIRSTNAME            LASTNAME             ORDERCARTI ORDERPRICE      
+---------- -------------------- -------------------- ---------- ----------      
+astrab     Percy                Byron                8                3.99      
+dramab     Ophelia              Elsinore             2                3.99      
+astrab     Percy                Byron                4                4.99      
+shkeandco  Mary                 Folio                5                2.99      
+astrab     Percy                Byron                3                2.99      
+shkeandco  Mary                 Folio                6                6.99      
+astrab     Percy                Byron                3                3.99      
+shkeandco  Mary                 Folio                1                2.99      
+astrab     Percy                Byron                3                5.99      
+dramab     Ophelia              Elsinore             7                1.99      
+
+10 rows selected.
+
+SQL> 
+SQL> --(1)(d)
+SQL> CREATE VIEW CustomerTotalOrders AS
+  2  SELECT customerInfo.loginName, customerInfo.firstName,
+  3  customerInfo.lastName, SUM (lineItems.qtyOrdered) AS "Total Orders"
+  4  FROM customerInfo, lineItems, orderCartInfo
+  5  WHERE customerInfo.loginName = orderCartInfo.customerID
+  6  AND orderCartInfo.orderCartID = lineItems.orderCartID
+  7  GROUP BY customerInfo.firstName, customerInfo.lastName, customerInfo.loginName;
+CREATE VIEW CustomerTotalOrders AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> SELECT * FROM CustomerTotalOrders;
+
+LOGINNAME  FIRSTNAME            LASTNAME             Total Orders               
+---------- -------------------- -------------------- ------------               
+shkeandco  Mary                 Folio                           6               
+astrab     Percy                Byron                          22               
+dramab     Ophelia              Elsinore                        4               
+
+SQL> 
+SQL> --(1)(e)
+SQL> CREATE VIEW CustomerTotalCarts AS
+  2  SELECT customerInfo.loginName, COUNT(orderCartInfo.orderCartId) AS "Total",
+  3  CASE
+  4  	     WHEN COUNT(orderCartInfo.orderCartId) > 2 THEN 'BR-1 violated'
+  5  	     ELSE 'BR-1 satisfied'
+  6  END AS "BusinessRule1"
+  7  FROM customerInfo
+  8  JOIN orderCartInfo ON customerInfo.loginName = orderCartInfo.customerID
+  9  GROUP BY customerInfo.loginName;
+CREATE VIEW CustomerTotalCarts AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> SELECT * FROM CustomerTotalCarts;
+
+LOGINNAME       Total B_R                                                       
+---------- ---------- --------------                                            
+dramab              2 BR-1 satisfied                                            
+shkeandco           3 BR-1 violated                                             
+astrab              3 BR-1 violated                                             
+
+SQL> 
+SQL> 
+SQL> --(1)(f)
+SQL> SELECT itemNum, itemSize, itemColor
+  2  FROM
+  3  (SELECT itemNum, itemSize, itemColor,
+  4  CASE
+  5  WHEN "Price_Check" <= 1 THEN 'BR-2 violated'
+  6  ELSE 'BR-2 satisfied'
+  7  END AS "BusinessRule2"
+  8  FROM
+  9  (SELECT itemNum, itemSize, itemColor,
+ 10  COUNT(itemNum) AS "Price_Check"
+ 11  FROM inventoryItem
+ 12  GROUP BY itemNum, itemSize, itemColor))
+ 13  WHERE BusinessRule2 = 'BR-2 violated';
+WHERE BusinessRule2 = 'BR-2 violated'
+      *
+ERROR at line 13:
+ORA-00904: "BUSINESSRULE2": invalid identifier 
+
+
+SQL> 
+SQL> --(1)(g)
+SQL> COLUMN PICTURE FORMAT a11
+SQL> SELECT *
+  2  FROM itemType;
+
+ITEMNUM    NAME                 PICTURE          PRICE BELONGSTO                
+---------- -------------------- ----------- ---------- ----------               
+A0         The Anarchy of Mask  ***              10.99 P                        
+A1         The Butler Did       ---              11.99 C                        
+A2         The Abolished Man    ===              15.99 SF                       
+A3         Lyrical Bullets      +-+-             20.99 P                        
+B1         The Postlude         =\=\=            34.99 P                        
+C1         The August of Guns   **--             10.99 H                        
+C2         The Expectant Mirror ^-^              12.99 H                        
+
+7 rows selected.
+
+SQL> CREATE VIEW MinimumPrice AS
+  2  SELECT MIN(price) AS min FROM itemType;
+CREATE VIEW MinimumPrice AS
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> CREATE TRIGGER PriceCheck
+  2  BEFORE INSERT OR UPDATE OF price
+  3  ON itemType FOR EACH ROW
+  4  DECLARE Minimum_Price FLOAT;
+  5  
+  6  BEGIN
+  7  SELECT MIN(min) INTO Minimum_Price FROM MinimumPrice;
+  8  IF :new.price > (Minimum_Price * 4) THEN RAISE_APPLICATION_ERROR(-20107,
+  9  'Price of Item Exceeds the Set Limit!');
+ 10  END IF;
+ 11  END;
+ 12  /
+
+Trigger created.
+
+SQL> 
+SQL> --Tests for (1)(g)
+SQL> SELECT * FROM itemType;
+
+ITEMNUM    NAME                 PICTURE          PRICE BELONGSTO                
+---------- -------------------- ----------- ---------- ----------               
+A0         The Anarchy of Mask  ***              10.99 P                        
+A1         The Butler Did       ---              11.99 C                        
+A2         The Abolished Man    ===              15.99 SF                       
+A3         Lyrical Bullets      +-+-             20.99 P                        
+B1         The Postlude         =\=\=            34.99 P                        
+C1         The August of Guns   **--             10.99 H                        
+C2         The Expectant Mirror ^-^              12.99 H                        
+
+7 rows selected.
+
+SQL> 
+SQL> INSERT INTO itemType VALUES('A5', 'The September',
+  2  'xxxx', 790.67, 'P');
+INSERT INTO itemType VALUES('A5', 'The September',
+            *
+ERROR at line 1:
+ORA-20107: Price of Item Exceeds the Set Limit! 
+ORA-06512: at "Z20375DM.PRICECHECK", line 5 
+ORA-04088: error during execution of trigger 'Z20375DM.PRICECHECK' 
+
+
+SQL> 
+SQL> SELECT * FROM itemType;
+
+ITEMNUM    NAME                 PICTURE          PRICE BELONGSTO                
+---------- -------------------- ----------- ---------- ----------               
+A0         The Anarchy of Mask  ***              10.99 P                        
+A1         The Butler Did       ---              11.99 C                        
+A2         The Abolished Man    ===              15.99 SF                       
+A3         Lyrical Bullets      +-+-             20.99 P                        
+B1         The Postlude         =\=\=            34.99 P                        
+C1         The August of Guns   **--             10.99 H                        
+C2         The Expectant Mirror ^-^              12.99 H                        
+
+7 rows selected.
+
+SQL> 
+SQL> UPDATE itemType SET price = 200
+  2  WHERE itemNum = 'C2';
+UPDATE itemType SET price = 200
+       *
+ERROR at line 1:
+ORA-04091: table Z20375DM.ITEMTYPE is mutating, trigger/function may not see it 
+ORA-06512: at "Z20375DM.PRICECHECK", line 4 
+ORA-04088: error during execution of trigger 'Z20375DM.PRICECHECK' 
+
+
+SQL> 
+SQL> SELECT * FROM itemType;
+
+ITEMNUM    NAME                 PICTURE          PRICE BELONGSTO                
+---------- -------------------- ----------- ---------- ----------               
+A0         The Anarchy of Mask  ***              10.99 P                        
+A1         The Butler Did       ---              11.99 C                        
+A2         The Abolished Man    ===              15.99 SF                       
+A3         Lyrical Bullets      +-+-             20.99 P                        
+B1         The Postlude         =\=\=            34.99 P                        
+C1         The August of Guns   **--             10.99 H                        
+C2         The Expectant Mirror ^-^              12.99 H                        
+
+7 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> SPOOL OFF;

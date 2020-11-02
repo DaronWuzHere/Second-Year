@@ -1,0 +1,35 @@
+Hello from ./processes/processes!
+My PID is 27516
+That call returned the value 27517 to process 27516
+Goodbye from ./processes/processes with PID 27516
+That call returned the value 0 to process 27517
+Goodbye from ./processes/processes with PID 27517
+
+
+
+***************************
+*  A different programme  *
+***************************
+
+Hello from ./processes/baby!
+My PID is 27923
+Goodbye from ./processes/baby with PID 27923
+
+
+
+Hello from ./orphan/orphan!
+Parent process 28165 run by process 6467
+Child  process 28166 parent is 28165
+Parent terminating 28165
+Orphan terminating 28166
+
+
+
+
+Hello from ./zombie/zombie!
+Parent process will have a sleep ...
+Child process  28393 parent is 28392
+Child exiting now; will be a zombie for a few seconds
+
+Parent terminating; O.S. will clean up.
+

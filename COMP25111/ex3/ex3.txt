@@ -1,0 +1,9 @@
+Question 1
+If you don't allocate enough memory during dynamic memory allocation, a 
+"NULL" pointer might be returned. On the otherhand, you may get a "buffer
+overflow", if your string is too big for the allocated memory.
+
+
+Question 2
+If you don't "free" the memory after allocating it then you might be using
+more memory at runtime.  

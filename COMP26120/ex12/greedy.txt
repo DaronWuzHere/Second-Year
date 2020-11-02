@@ -1,0 +1,6 @@
+Daronhil Mauricette 
+Solving the 0/1 knapsack problem with the greedy algorithm is inefficient 
+because it ignores other solutions of the problem, in which the items are 
+placed in different orders. Though I do not believe it is the most optimal
+solution for the fractional knapsack problem, it would still work better with it
+than the 0/1.

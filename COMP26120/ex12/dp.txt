@@ -1,0 +1,17 @@
+Daronhil Mauricette
+COMP26120
+Three properties of the knapsack problem are:
+
+1. Simple Subproblems
+The simple subproblems are the additions of the items to be added into the
+"knapsack" and the comparisons that take place inorder to find solutions that 
+fit the items in the "knapsack".
+
+2. Subproblem Optimality
+Subproblem optimality is finding the best solution from the set of subproblems,
+which is basically finding the solution which is the combination of the highest
+weight and the highest value.
+
+3. Subproblem Overlap
+Some subproblems may contain similar solutions to other subproblems but this is 
+why it is important to find best solution.  

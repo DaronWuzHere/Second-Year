@@ -1,0 +1,12 @@
+Workshop Two
+
+Step one
+The problem is that Xhiphin Zohos doesn't care if the water has been
+checked to see if it has been clean or not be Stefan. I would guess the code 
+that is supposed to ensure the water has to be checked, wasn't typed correctly
+or is not present.
+
+Step Two
+The quest works correctly when the water is not the first item in your bag, but 
+as soon as the water is moved to the first item slot, it is automatically 
+taken by the Xhiphin Zohos.

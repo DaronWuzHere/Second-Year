@@ -1,0 +1,14 @@
+-_-_-_-_-_-_-_-_-_- Text Output of the Program -_-_-_-_-_-_-_-_-_-_-
+3 arguments supplied
+
+The size of the "argv" is 8
+
+The number of arguments givem are 3
+
+The size of the array is 24
+
+Argument pointer array: 000000001F82A858
+  Pointer  0 at address 000000001F82A858 is 000000001F82BF1A to string "./arguments".
+  Pointer  1 at address 000000001F82A860 is 000000001F82BF26 to string "Hello".
+  Pointer  2 at address 000000001F82A868 is 000000001F82BF2C to string "World!".
+

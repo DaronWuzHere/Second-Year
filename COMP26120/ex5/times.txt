@@ -1,0 +1,17 @@
+Algorithm, 	Length,	ascending, descending, random
+bubble, 	1000,	 , , 
+insertion, 	1000,	0m0.006s, 0m0.008s, 0m0.008s
+bucket, 	1000, 	0m0.006s, 0m0.007s, 0m0.004s 
+
+bubble, 	10000, 	, , 
+insertion, 	10000, 	0m0.009s, 0m0.013s, 0m0.030s 
+bucket, 	10000, 	0m0.025s, 0m0.026s,0m0 026s
+
+bubble, 	100000,	 , , 
+insertion, 	100000,	0m0.086s, 0m0.083s , 0m0.084s
+bucket, 	100000,	 , , 
+
+bubble, 	1000000, , , 
+insertion, 	1000000, 0m0.320s, 0m0.268s, 0m0.320s
+bucket, 	1000000, 0m0.482s, 0m0.628s,0m0.596s 
+

@@ -1,0 +1,27 @@
+PART 1 - (1 mark)
+one iteration takes 2.802 nsec
+
+PART 2 - (1 mark)
+one iteration takes 29.910 nsec
+
+PART 3 - (3 marks)
+Why are the times reported in PART 1 and PART 2 different?
+The times are different because the count down variable "remaining" is initialized to 15 in part 1 and then initialized
+PART 6 - (4 marks)
+Explain how cache size reported in PART 4 relates to the values of nStruct at which performance changes quickly.
+
+PART 7 - (3 x 2 marks)
+Identify three regions of your graph with different performance characteristics and explain each region:
+In region 1: 
+In region 2: 
+In region 3:
+
+PART 8 - (5 marks)
+The cachetest program as written simply tests memory reads over different cache working sets.  Modify the program so that every iteration also writes into the structure and repeat the performance measurement.
+How does the characteristic vary? Why?
+
+PART 9 - (4 marks)
+The cachetest program as written uses reads to a structure of a certain number of bytes in width.  What happens if we double the size of the structure?  What happens if we halve its size?
+
+PART 10 - (10 marks)
+How could we enhance the cachetest program to determine whether a processor cache is direct mapped, set associative, or fully associative?
